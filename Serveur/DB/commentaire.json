@@ -1,0 +1,10 @@
+[
+	{
+		"id_com":1,
+		"id_hotel":1,
+		"id_user":01,
+		"commentaire":"C'était pas mal",
+		"date_debut_sejour":"5/02/2019",
+		"nb_jours_reste":9
+	}
+]
