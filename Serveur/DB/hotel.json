@@ -1,10 +1,18 @@
 [
 	{
 		"id_hotel":1,
-		"capacité":50,
-		"Lieux":"65 rue des poulains, Valence",
-		"id_user":01,
-		"Type":""
+		"mail":"gerant@gerant.com",
+		"capacite":5000,
+		"type":"Luxe",
+		"lieux":"Montpellier",
+		"nom":"Le Desperados"
+	},
+	{
+		"id_hotel":2,
+		"mail":"gerant@gerant.com",
+		"capacite":300,
+		"type":"Camping",
+		"lieux":"Montpellier",
+		"nom":"Le Camping Montpellierain"
 	}
-
 ]

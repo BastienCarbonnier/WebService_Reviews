@@ -1,9 +1,23 @@
 [
 	{
-		"id_user":01,
-		"Type":"Gérant",
-		"Nom":"Bouchard",
-		"Prénom":"Gérard"
+		"mail":"cedric.durand@test.fr",
+		"mdp":"un_mdp",
+		"nom":"Durand",
+		"prenom":"Cédric",
+		"type":"admin"
+	},
+	{
+		"mail":"gerant@gerant.com",
+		"mdp":"un_mdp",
+		"nom":"Gerant",
+		"prenom":"Gérard",
+		"type":"gerant"
+	},
+	{
+		"email":"test@test.fr",
+		"mdp":"un_mdp",
+		"nom":"Test",
+		"prenom":"Test",
+		"role":"emetteur"
 	}
-
 ]
