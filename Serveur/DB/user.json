@@ -1,21 +1,21 @@
 [
 	{
 		"mail":"cedric.durand@test.fr",
-		"mdp":"un_mdp",
+		"mdp":"fb1a423f75a23a211b1612edea146c5e",
 		"nom":"Durand",
 		"prenom":"Cédric",
 		"type":"admin"
 	},
 	{
 		"mail":"gerant@gerant.com",
-		"mdp":"un_mdp",
+		"mdp":"fb1a423f75a23a211b1612edea146c5e",
 		"nom":"Gerant",
 		"prenom":"Gérard",
 		"type":"gerant"
 	},
 	{
 		"email":"test@test.fr",
-		"mdp":"un_mdp",
+		"mdp":"fb1a423f75a23a211b1612edea146c5e",
 		"nom":"Test",
 		"prenom":"Test",
 		"role":"emetteur"
