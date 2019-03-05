@@ -14,6 +14,7 @@ app.use(express.json());
 MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	let db = client.db("Hotel_Advisor");
 
+/*------------------------ Service USER ------------------------*/
 	app.get("/user", (req, res) => {
 	    db.collection("user").find().toArray((err, documents)=> {
 			res.setHeader("Content-type", "application/json");
@@ -21,7 +22,6 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
    	});
 
-	//Post au lieu de get pour éviter de mettre le mot de passe dans l'url ! 
 	//curl --header "Content-type: application/json" -X POST --data '{"mail":"gerant@gerant.com", "mdp":"un_mdp"}' localhost:8888/login
     app.post("/login",(req,res)=>{ 
     	req.body.mdp=md5(req.body.mdp);
@@ -55,6 +55,31 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     	}	
     });
 
+    //test : curl --header "Content-type: application/json" -X DELETE localhost:8888/deleteUser/mail=gerant@gerant.com
+    app.delete("/deleteUser/mail=:mail", (req,res) =>{
+    	let mail = req.params.mail;
+
+    	db.collection('user').find({"mail":mail}).toArray((err, documents)=>{
+    		if(documents!== undefined && documents[0]!==undefined){
+    			db.collection('hotel').find({"mail":mail}).toArray((err, documentsHotel)=>{
+    				documentsHotel.forEach(function(element) {
+    					db.collection("commentaire").deleteMany({"id_hotel":element.id_hotel});
+						db.collection("hotel").deleteOne({"id_hotel":element.id_hotel});
+					});
+					db.collection("user").deleteOne({"mail":mail});
+	    			res.setHeader("Content-type","application/json");
+			    	res.end(JSON.stringify("\nSuppression réussie !\n"));   
+    			});
+ 			
+    		}else{
+    			res.setHeader("Content-type","application/json");
+		    	res.end(JSON.stringify("\nSuppression non réussie !\n"));
+    		}
+    	});
+    });
+
+
+/*------------------------ Service HOTEL ------------------------*/
     app.get("/allHotel", (req, res) => {
 	    db.collection("hotel").find().toArray((err, documents)=> {
 			res.setHeader("Content-type", "application/json");
@@ -110,8 +135,32 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     	}	
     });
 
+    //test : curl --header "Content-type: application/json" -X DELETE localhost:8888/deleteHotel/hotelId=1/mail=gerant@gerant.com
+    app.delete("/deleteHotel/hotelId=:hotelId/mail=:mail", (req,res) =>{
+    	let mail = req.params.mail;
+    	let hotelId =  parseInt(req.params.hotelId);
 
+    	db.collection('hotel').find({"mail":mail,"id_hotel":hotelId}).toArray((err, documents)=>{
+    		if(documents!== undefined && documents[0]!==undefined){
+    			db.collection("commentaire").deleteMany({"id_hotel":hotelId});
+    			db.collection("hotel").deleteOne({"mail":mail,"id_hotel":hotelId});
+    			res.setHeader("Content-type","application/json");
+		    	res.end(JSON.stringify("\nSuppression réussie !\n"));    			
+    		}else{
+    			res.setHeader("Content-type","application/json");
+		    	res.end(JSON.stringify("\nSuppression non réussie !\n"));
+    		}
+    	});
+    });
 
+/*------------------------ Service COMMENTAIRE ------------------------*/
+
+    app.get("/allCom", (req, res) => {
+	    db.collection("commentaire").find().toArray((err, documents)=> {
+			res.setHeader("Content-type", "application/json");
+		    res.end(JSON.stringify(documents));
+		});
+   	});
 
 });
 console.log("Everything is ok !");
