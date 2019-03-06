@@ -35,9 +35,9 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		}
     });
 
-   	// curl --header "Content-type: application/json" -X POST --data '{"mail":"claire.delune@gmail.com", "nom":"Delune", "prenom":"Claire", "mdp":"lol", "type":"emetteur"}' localhost:8888/addUsers
+   	// curl --header "Content-type: application/json" -X POST --data '{"mail":"claire.delune@gmail.com", "nom":"Delune", "prenom":"Claire", "mdp":"lol", "type":"emetteur"}' localhost:8888/addUser
 	// ATTENTION tous les champs doivent être obligatoire
-    app.post("/addUsers", (req, res) => {
+    app.post("/addUser", (req, res) => {
     	res.setHeader("Content-type", "application/json");	
     	try {
 	    	db.collection('user').find({"mail":req.body['mail']}).toArray((err,documents)=>{
@@ -87,14 +87,11 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
    	});
 
-
-    //post pour que l'utilisateur ne puisse modifier le mail si il est passé dans l'url
-	// curl --header "Content-type: application/json" -X POST --data '{"mail":"gerant@gerant.com"}' localhost:8888/hotel
    	// On passe le mail du gérant ! 
-    app.post("/hotel", (req, res) => {
+    app.get("/hotel/mail=:mail", (req, res) => {
     	db.collection("hotel").aggregate([
 					{
-						$match:req.body					
+						$match:{"mail":req.params.mail}				
 					},
 					{
 			            $lookup:
@@ -161,6 +158,72 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		    res.end(JSON.stringify(documents));
 		});
    	});
+
+   	app.get("/comHotel/hotelId=:hotelId",(req, res)=>{
+   		let idHotel = parseInt(req.params.hotelId);
+   		db.collection('commentaire').find({"id_hotel":idHotel}).toArray((err, documents)=>{
+   			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(documents));
+   		});
+   	});
+
+   	app.get("/comUser/mail=:mail",(req, res)=>{
+   		let mail = req.params.mail;
+   		db.collection('commentaire').find({"mail":mail}).toArray((err, documents)=>{
+   			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(documents));
+   		});
+   	});
+
+	// curl --header "Content-type: application/json" -X POST --data '{"mail":"test@test.fr", "id_hotel":1, "commentaire":"Chambre sombre mais séjour parfait.", "date_debut_sejour":"5/12/2018", "nb_jours_reste":20}' localhost:8888/addCom
+    app.post("/addCom", (req, res) => { 
+    	res.setHeader("Content-type", "text/raw");	
+    	try {
+    			db.collection('commentaire').find().toArray((err,documents)=>{
+    				let idNewCom=0;
+    				for(let i =0; i<documents.length;i++){ //pour a voir un id unique
+    					if(idNewCom<documents[i].id_com)
+    						idNewCom = documents[i].id_com;
+    				}
+    				idNewCom++;
+    				req.body["id_com"]=idNewCom;
+
+    				db.collection('commentaire').insertOne(req.body);
+					res.end(JSON.stringify("\nInsertion réussie\n"));
+		  
+	    		});
+    	} catch(e) {
+    		console.log(e);
+    	}	
+    });
+
+    //test : curl --header "Content-type: application/json" -X DELETE localhost:8888/deleteCom/comID=2
+    app.delete("/deleteCom/comID=:comID", (req,res) =>{
+    	let comID =  parseInt(req.params.comID);
+
+    	db.collection('commentaire').find({"id_com":comID}).toArray((err, documents)=>{
+    		if(documents!== undefined && documents[0]!==undefined){
+    			db.collection("commentaire").deleteOne({"id_com":comID});
+       			res.setHeader("Content-type","application/json");
+		    	res.end(JSON.stringify("\nSuppression réussie !\n"));    			
+    		}else{
+    			res.setHeader("Content-type","application/json");
+		    	res.end(JSON.stringify("\nSuppression non réussie !\n"));
+    		}
+    	});
+    });
+
+    //Mettre les slashes de la date avec %2F
+    //test : curl --header "Content-type: application/json" -X PUT localhost:8888/updateCom/comID=1/com=TEST/date=12%2F04%2F2019/nbJ=30
+    app.put("/updateCom/comID=:comID/com=:com/date=:date/nbJ=:nbJ",(req,res)=>{
+    	let comID = parseInt(req.params.comID);
+    	let com = req.params.com;
+    	let date = req.params.date;
+    	let nbJ = parseInt(req.params.nbJ);
+    	db.collection("commentaire").updateOne({"id_com":comID},{$set :{"commentaire":com,"date_debut_sejour":date,"nb_jours_reste":nbJ}});
+    	res.setHeader("Content-type","application/json");
+		res.end(JSON.stringify("Modification réussie !"));
+    });
 
 });
 console.log("Everything is ok !");
