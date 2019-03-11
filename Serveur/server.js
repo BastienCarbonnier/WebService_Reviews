@@ -224,7 +224,17 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     	res.setHeader("Content-type","application/json");
 		res.end(JSON.stringify("Modification réussie !"));
     });
+    
+    /*------------------------ Service test affichage ontologie ------------------------*/
+app.get("/ontologie", (req, res) => {
+	    db.collection("ontologie").find().toArray((err, documents)=> {
+			res.setHeader("Content-type", "application/json");
+		    res.end(JSON.stringify(documents));
+		});
+   	});
 
 });
+
+   	
 console.log("Everything is ok !");
 app.listen(8888);
