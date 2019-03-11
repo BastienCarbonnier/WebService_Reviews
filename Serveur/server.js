@@ -132,6 +132,33 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     	}	
     });
 
+    //Mettre le code %20 pour les espace
+    //test : curl --header "Content-type: application/json" -X PUT localhost:8888/updateHotel/hotelID=1/mail=gerant@gerant.com/capacite=5102/type=Haut%20de%20gamme
+    app.put("/updateHotel/hotelID=:hotelID/mail=:mail/capacite=:capacite/type=:type",(req,res)=>{
+    	let hotelID = parseInt(req.params.hotelID);
+    	let mail = req.params.mail;
+    	let capacite = parseInt(req.params.capacite);
+    	let type = req.params.type;
+    	db.collection("user").find({"mail":mail}).toArray((err, documents)=>{
+    		if(documents!== undefined && documents[0]!==undefined){
+    			if(documents[0].type=="gerant"){
+    				db.collection("hotel").updateOne({"id_hotel":hotelID},{$set :{"mail":mail,"capacite":capacite,"type":type}});
+			    	res.setHeader("Content-type","application/json");
+					res.end(JSON.stringify("Modification réussie !"));
+    			}
+    			else{
+    				res.setHeader("Content-type","application/json");
+		    		res.end(JSON.stringify("\nUtilisateur non gérant !\n"));
+    			}
+    		}else{
+    			res.setHeader("Content-type","application/json");
+		    	res.end(JSON.stringify("\nModification non réussie !\n"));
+    		}
+
+    	});
+    });
+
+
     //test : curl --header "Content-type: application/json" -X DELETE localhost:8888/deleteHotel/hotelId=1/mail=gerant@gerant.com
     app.delete("/deleteHotel/hotelId=:hotelId/mail=:mail", (req,res) =>{
     	let mail = req.params.mail;
