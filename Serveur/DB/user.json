@@ -18,6 +18,6 @@
 		"mdp":"fb1a423f75a23a211b1612edea146c5e",
 		"nom":"Test",
 		"prenom":"Test",
-		"role":"emetteur"
+		"type":"emetteur"
 	}
 ]
