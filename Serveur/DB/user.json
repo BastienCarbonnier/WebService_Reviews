@@ -14,7 +14,7 @@
 		"type":"gerant"
 	},
 	{
-		"email":"test@test.fr",
+		"mail":"test@test.fr",
 		"mdp":"fb1a423f75a23a211b1612edea146c5e",
 		"nom":"Test",
 		"prenom":"Test",
