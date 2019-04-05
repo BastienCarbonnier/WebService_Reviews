@@ -194,6 +194,27 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
    		});
    	});
 
+    app.get("/comHotelMoreInfo/hotelId=:hotelId",(req, res)=>{
+        let idHotel = parseInt(req.params.hotelId);
+        db.collection("commentaire").aggregate([
+                        {
+                            $match:{"id_hotel":idHotel}
+                        },
+                        {
+                            $lookup:
+                            {
+                                from: "user",
+                                localField: "mail",
+                                foreignField: "mail",
+                                as: "uti"
+                            }
+                        }]).toArray((err,documents)=>{ 
+                            res.setHeader("Content-type", "application/json");
+                            res.end(JSON.stringify(documents));
+
+                        });
+    });
+
    	app.get("/comUser/mail=:mail",(req, res)=>{
    		let mail = req.params.mail;
    		db.collection('commentaire').find({"mail":mail}).toArray((err, documents)=>{
