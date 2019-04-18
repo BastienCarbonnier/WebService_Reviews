@@ -215,6 +215,40 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
                         });
     });
 
+    app.get("/comHotelNoTraite/hotelId=:hotelId",(req, res)=>{
+        let idHotel = parseInt(req.params.hotelId);
+        db.collection("commentaire").aggregate([
+                        {
+                            $match:{"id_hotel":idHotel}
+                        },
+                        {
+                            $lookup:
+                            {
+                                from: "user",
+                                localField: "mail",
+                                foreignField: "mail",
+                                as: "uti"
+                            }
+                        }]).toArray((err,documents)=>{ 
+                            let resultat =new Array(); 
+                            for( let i in documents){
+                                if(documents[i]['traiter']==0){
+                                    resultat.push(documents[i]);
+                                }
+                            }
+                            res.setHeader("Content-type", "application/json");
+                            res.end(JSON.stringify(resultat));
+
+                        });
+    });
+
+    app.put("/comTraiter/id=:id",(req, res)=>{
+        let id = parseInt(req.params.id);
+        db.collection("commentaire").updateOne({"id_com":id},{$set :{"traiter":1}});
+        res.setHeader("Content-type","application/json");
+        res.end(JSON.stringify("Modification réussie !"));
+    });
+
    	app.get("/comUser/mail=:mail",(req, res)=>{
    		let mail = req.params.mail;
    		db.collection('commentaire').find({"mail":mail}).toArray((err, documents)=>{
@@ -235,6 +269,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     				}
     				idNewCom++;
     				req.body["id_com"]=idNewCom;
+                    req.body["traiter"]=0;
 
     				db.collection('commentaire').insertOne(req.body);
 					res.end(JSON.stringify("\nInsertion réussie\n"));
