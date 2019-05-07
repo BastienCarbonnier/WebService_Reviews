@@ -314,12 +314,19 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		res.end(JSON.stringify("Modification réussie !"));
     });
     
-    /*------------------------ Service test affichage ontologie ------------------------*/
+    /*------------------------ Service affichage et sauvegarde ontologie ------------------------*/
 	app.get("/ontologie", (req, res) => {
 	    db.collection("ontologie").find({"id_hotel":parseInt(req.query["id"])}).toArray((err, documents)=> {
 			res.setHeader("Content-type", "application/json");
 		    res.end(JSON.stringify(documents));
 		});
+   	});
+   	
+   	app.put("/ontologie/update", (req, res) => {
+			let obj = req.body.ontologie;
+			db.collection("ontologie").updateOne({"id_hotel":parseInt(req.body.id_hotel)},{$set :{"ontologie":obj}});
+			res.setHeader("Content-type", "application/json");
+		    res.end(JSON.stringify("Modification ontologie réussie !"));
    	});
 
 });
