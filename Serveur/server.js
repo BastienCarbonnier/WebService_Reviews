@@ -248,6 +248,12 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
         res.setHeader("Content-type","application/json");
         res.end(JSON.stringify("Modification réussie !"));
     });
+    app.put("/comTraiter/",(req, res)=>{
+        let id = parseInt(req.body.id);
+        db.collection("commentaire").updateOne({"id_com":id},{$set :{"traiter":1}});
+        res.setHeader("Content-type","application/json");
+        res.end(JSON.stringify("Modification réussie !"));
+    });
 
    	app.get("/comUser/mail=:mail",(req, res)=>{
    		let mail = req.params.mail;

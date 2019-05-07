@@ -1,14 +1,14 @@
 [
 	{
-		"name":"hotel",
-		"polarite":[42,23,71],
+		"name":"hôtel",
+		"polarite":{"neg":0.42,"neutre":0.23,"pos":0.71},
 		"children" : [
 		{
 			"name":"chambre",
 			"children":[
 			{
 				"name":"literie",
-				"polarite":[19,9,68],
+				"polarite":{"neg":0.19,"neutre":0.9,"pos":0.68},
 				"children":[
 								{
 									"name":"matelas",
@@ -156,17 +156,17 @@
 									"name":"femme de ménage",
 									"children": [],
 									"synonymes":       ["femme de service"],
-									"polarite":[42,23,51]
+									"polarite":{"neg":0.42,"neutre":0.23,"pos":0.51}
 								},
 								{
 									"name":"aspirateur",
 									"children": [],
 									"synonymes":  ["balai"],
-									"polarite":[60,10,20]
+									"polarite":{"neg":0.60,"neutre":0.10,"pos":0.20}
 								}
 							],
 				"synonymes":       ["propreté", "poussières"],
-				"polarite":[63,11,34]
+				"polarite":{"neg":0.63,"neutre":0.11,"pos":0.34}
 			}
 					  ],
 			"synonymes": ["chambrée", "suite"] 
@@ -408,7 +408,7 @@
 	},
 	{
 		"name":"bruit",
-		"polarite":[87,31,12],
+		"polarite":{"neg":0.87,"neutre":0.31,"pos":0.12},
 		"children"    : [],
 		"synonymes": ["insonorisation","calme", "tranquillité"] 
 	}],
