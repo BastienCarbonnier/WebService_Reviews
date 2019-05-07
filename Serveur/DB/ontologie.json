@@ -1,4 +1,7 @@
 [
+{ 
+	"id_hotel":1,
+	"ontologie":
 	{
 		"name":"hôtel",
 		"polarite":{"neg":0.42,"neutre":0.23,"pos":0.71},
@@ -414,4 +417,424 @@
 	}],
 	 "synonymes" : ["établissement","club"]
 	}
+},
+{
+	"id_hotel":2,
+	"ontologie":
+	{
+		"name":"hôtel",
+		"polarite":{"neg":0.42,"neutre":0.23,"pos":0.71},
+		"children" : [
+		{
+			"name":"chambre",
+			"children":[
+			{
+				"name":"literie",
+				"polarite":{"neg":0.19,"neutre":0.9,"pos":0.68},
+				"children":[
+								{
+									"name":"matelas",
+									"children": [],
+									"synonymes": []
+								},
+								{
+									"name":"drap",
+									"children": [],
+									"synonymes": []
+								},
+								{
+									"name":"couette",
+									"children": [],
+									"synonymes":   ["couverture"]
+								},
+								{
+									"name":"taie",
+									"children":        [],
+									"synonymes":   []
+								},
+								{
+									"name":"sommier",
+									"children":     [],
+									"synonymes":   []
+								},
+								{
+									"name":"lit bébé",
+									"children":    [],
+									"synonymes":   ["lit enfant"]
+								}
+							],
+				"synonymes" :      ["lit","couchage"]
+			},
+			{
+				"name":"salle de bain",
+				"children":   [
+								{
+									"name":"lavabo",
+									"children":      [],
+									"synonymes":   ["évier"]
+								},
+								{
+									"name":"douche",
+									"children":  [
+													{
+														"name":"rideau",
+														"children": [],
+														"synonymes": []
+													}
+												 ],
+								    "synonymes":   []
+								},
+								{
+									"name":"baignoire",
+									"children":   [],
+									"synonymes":   []
+								},
+								{
+									"name":"bidet",
+									"children":       [],
+									"synonymes":   []
+								},
+								{
+									"name":"glace",
+									"children":       [],
+									"synonymes":   ["miroir"]
+								},
+								{
+									"name":"serviette",
+									"children":   [],
+									"synonymes":   []
+								}
+							  ],
+				"synonymes" :      ["salle d'eau", "salle"]
+			},
+			{
+				"name":"toilettes",
+				"children": [
+								{
+									"name":"cuvette",
+									"children": [],
+									"synonymes": []
+								}
+							],
+				"synonymes":       ["WC"]
+			},
+			{
+				"name":"équipement",
+				"children":  [
+								{
+									"name":"télévision",
+									"children": [
+													{
+														"name":"télécommande",
+														"children": [],
+														"synonymes":    ["zapette"]
+													}
+												],
+									"synonymes":  ["télé","tele","tv"]
+								},
+								{
+									"name":"coffre",
+									"children":     [],
+									"synonymes":  []
+								},
+								{
+									"name":"bar",
+									"children":        [],
+									"synonymes":  ["frigidaire","frigo","réfrigérateur"]
+								}
+							 ],
+				"synonymes":        []
+			},
+			{
+				"name":"rangement",
+				"children": [
+								{
+									"name":"armoire",
+									"children": [],
+									"synonymes": ["penderie"]
+								}
+							],
+				"synonymes":       []
+			},
+			{
+				"name":"décoration",
+				"children":      [],
+				"synonymes":       []
+			},
+			{
+				"name":"climatisation",
+				"children":   [],
+				"synonymes":       ["air conditionné","ventilation"]
+			},
+			{
+				"name":"terrasse",
+				"children":        [],
+				"synonymes":       ["balcon"]
+			},
+			{
+				"name":"ménage",
+				"children": [
+								{
+									"name":"femme de ménage",
+									"children": [],
+									"synonymes":       ["femme de service"],
+									"polarite":{"neg":0.42,"neutre":0.23,"pos":0.51}
+								},
+								{
+									"name":"aspirateur",
+									"children": [],
+									"synonymes":  ["balai"],
+									"polarite":{"neg":0.60,"neutre":0.10,"pos":0.20}
+								}
+							],
+				"synonymes":       ["propreté", "poussières"],
+				"polarite":{"neg":0.63,"neutre":0.11,"pos":0.34}
+			}
+					  ],
+			"synonymes": ["chambrée", "suite"] 
+		},
+
+		{
+			"name":"restauration",
+			"children": [
+			{
+				"name":"petit-déjeuner",
+				"children":  [
+				{
+					"name":"café",
+					"children":         [],
+					"synonymes":    []
+				},
+				{
+					"name":"thé",
+					"children":          [],
+					"synonymes":    []
+				},
+				{
+					"name":"chocolat",
+					"children":     [],
+					"synonymes":    ["cacao"]
+				},
+				{
+					"name":"viennoiserie",
+					"children": [],
+					"synonymes":    []
+				}
+				],
+				"synonymes":       []
+		},
+		{
+			"name":"repas",
+			"children":  [
+			{
+				"name":"buffet",
+				"children":       [],
+				"synonymes":    []
+			}
+			],
+			"synonymes":       ["déjeuner", "dîner", "collation"]
+		},
+		{
+			"name":"demi-pension",
+			"children":    [],
+			"synonymes":        []
+		},
+		{
+			"name":"pension-complète",
+			"children": [],
+			"synonymes":       ["all-inclusive"]
+		},
+		{
+			"name":"boisson",
+			"children": [
+			{
+				"name":"eau",
+				"children":    [],
+				"synonymes":    []
+		    },
+			{
+				"name":"vin",
+				"children":          [],
+				"synonymes":    []
+			},
+			{
+				"name":"cocktail",
+				"children":     [],
+				"synonymes":    ["mojito"]
+			},
+			{
+				"name":"bière",
+				"children":        [],
+				"synonymes":    []
+			},
+			{
+				"name":"jus de fruit",
+				"children": [],
+				"synonymes":    ["soda"]
+			}
+			],
+			"synonymes":       []
+		},
+		{
+			"name":"cuisinier",
+			"children":       [],
+			"synonymes":       ["chef","cuistot"]
+		},
+		{
+			"name":"service",
+			"children": [
+			{
+				"name":"serveur",
+				"children":      [],
+				"synonymes":    ["garçon", "sommelier"]
+			}],
+			"synonymes":       []
+		}
+								 ],
+			"synonymes": ["nourriture","cuisine"] 
+	},
+	{
+		"name":"installations",
+		"children": [
+		{
+			"name":"spa",
+			"children":        [],
+			"synonymes":       []
+		},
+	  {
+		  "name":"sauna",
+		  "children":           [],
+		  "synonymes":       []
+	  },
+	  {
+		  "name":"jacuzzi",
+		  "children":         [],
+	      "synonymes":       []
+	  },
+	  {
+		  "name":"salle de sport",
+		  "children":  [],
+		  "synonymes":       ["gym","salle de fitness"]
+	  },
+	  {
+		  "name":"internet",
+		  "children":        [],
+	      "synonymes":       ["wifi"]
+	  },
+	  {
+		  "name":"escalier",
+		  "children":        [],
+	      "synonymes":       []
+	  },
+	  {
+		  "name":"ascenseur",
+		  "children":       [],
+		  "synonymes":       []
+	  }],
+	  "synonymes":    []
+	},
+	{
+		"name":"personnel",
+		"children":  [
+		{
+			"name":"accueil",
+			"children":     [],
+			"synonymes":       ["réception"]
+		},
+		  {
+			  "name":"disponibilité",
+			  "children":   [],
+			  "synonymes":       []
+		  },
+		  {
+			  "name":"direction",
+			  "children":       [],
+			  "synonymes":       ["directeur", "Mathieu Lafourcade"]
+		  }],
+		"synonymes":    ["équipe","staff"] 
+	},
+	{
+		"name":"activités",
+		"children":  [
+		{
+			"name":"animation",
+			"children":  [
+			{
+				"name":"animateur",
+				"children":   [],
+				"synonymes":   []
+			}],
+			"synonymes":       []
+		},
+		{
+			"name":"soirée",
+			"children":          [],
+			"synonymes":       ["discothèque"]                               
+		},
+		{
+			"name":"excursion",
+			"children":       [],
+			"synonymes":       []
+		}],
+		"synonymes": [] 
+	},
+	{
+		"name":"extérieur",
+		"children": [
+		{
+			"name":"accès",
+			"children":  [
+			{
+				"name":"accès handicapé",
+				"children": [],
+				"synonymes":   []
+			}],
+			"synonymes":       []
+		},
+		{
+			"name":"parking",
+			"children":         [],
+			"synonymes":       []
+		},
+		{
+			"name":"cadre",
+			"children":           [],
+			"synonymes":       ["environnement","vue"]
+		},
+		  {
+			  "name":"jardin",
+			  "children":          [],
+			  "synonymes":       ["parc","espaces verts"]
+		  },
+		  {
+			  "name":"piscine",
+			  "children":   [
+			  {
+				  "name":"piscine extérieure",
+				  "children": [],
+				  "synonymes":   []
+			  },
+			  {
+				  "name":"piscine intérieure",
+				  "children": [],
+				  "synonymes":   []
+			  }],
+		      "synonymes":       ["bassin"]
+		  },
+		  {
+			  "name":"plage",
+			  "children":           [],
+			  "synonymes":       ["bord de mer"]
+		  }],
+		"synonymes": [] 
+	},
+	{
+		"name":"bruit",
+		"polarite":{"neg":0.87,"neutre":0.31,"pos":0.12},
+		"children"    : [],
+		"synonymes": ["insonorisation","calme", "tranquillité"] 
+	}],
+	 "synonymes" : ["établissement","club"]
+	}
+}
 ]

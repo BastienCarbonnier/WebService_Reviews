@@ -315,8 +315,8 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     });
     
     /*------------------------ Service test affichage ontologie ------------------------*/
-app.get("/ontologie", (req, res) => {
-	    db.collection("ontologie").find().toArray((err, documents)=> {
+	app.get("/ontologie", (req, res) => {
+	    db.collection("ontologie").find({"id_hotel":parseInt(req.query["id"])}).toArray((err, documents)=> {
 			res.setHeader("Content-type", "application/json");
 		    res.end(JSON.stringify(documents));
 		});
