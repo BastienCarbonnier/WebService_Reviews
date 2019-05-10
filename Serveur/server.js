@@ -242,6 +242,35 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
                         });
     });
 
+    app.get("/comHotelATraite/hotelId=:hotelId",(req, res)=>{
+        let idHotel = parseInt(req.params.hotelId);
+        db.collection("commentaire").aggregate([
+                        {
+                            $match:{"id_hotel":idHotel}
+                        },
+                        {
+                            $lookup:
+                            {
+                                from: "user",
+                                localField: "mail",
+                                foreignField: "mail",
+                                as: "uti"
+                            }
+                        }]).toArray((err,documents)=>{ 
+                            let resultat =new Array(); 
+                            for( let i in documents){
+                                if(documents[i]['traiter']==2){
+                                    resultat.push(documents[i]);
+                                }
+                            }
+                            res.setHeader("Content-type", "application/json");
+                            res.end(JSON.stringify(resultat));
+
+                        });
+    });
+
+
+
     app.put("/comTraiter/id=:id",(req, res)=>{
         let id = parseInt(req.params.id);
         db.collection("commentaire").updateOne({"id_com":id},{$set :{"traiter":1}});
@@ -251,6 +280,13 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     app.put("/comTraiter/",(req, res)=>{
         let id = parseInt(req.body.id);
         db.collection("commentaire").updateOne({"id_com":id},{$set :{"traiter":1}});
+        res.setHeader("Content-type","application/json");
+        res.end(JSON.stringify("Modification réussie !"));
+    });
+
+    app.put("/comATraiter/",(req, res)=>{
+        let id = parseInt(req.body.id);
+        db.collection("commentaire").updateOne({"id_com":id},{$set :{"traiter":2}});
         res.setHeader("Content-type","application/json");
         res.end(JSON.stringify("Modification réussie !"));
     });

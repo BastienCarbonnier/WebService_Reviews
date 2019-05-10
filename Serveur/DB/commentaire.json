@@ -5,7 +5,7 @@
 		"mail":"test@test.fr",
 		"commentaire":"Hôtel agréable, avec une chambre magnifique et une cuisine délicieuse.",
 		"date_debut_sejour":"5/10/2018",
-		"traiter":0,
+		"traiter":2,
 		"nb_jours_reste":10
 	},
 	{
@@ -14,7 +14,7 @@
 		"mail":"test@test.fr",
 		"commentaire":"Piscine nul et salle de bain pas jolie",
 		"date_debut_sejour":"5/11/2018",
-		"traiter":0,
+		"traiter":2,
 		"nb_jours_reste":10
 	}
 ]
