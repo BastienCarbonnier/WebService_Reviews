@@ -22,6 +22,13 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
    	});
 
+   	app.get("/userGerant", (req, res) => {
+	    db.collection("user").find({"type":"gerant"}).toArray((err, documents)=> {
+			res.setHeader("Content-type", "application/json");
+		    res.end(JSON.stringify(documents));
+		});
+   	});
+
 	//curl --header "Content-type: application/json" -X POST --data '{"mail":"gerant@gerant.com", "mdp":"un_mdp"}' localhost:8888/login
     app.post("/login",(req,res)=>{ 
     	req.body.mdp=md5(req.body.mdp);
@@ -122,7 +129,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     				}
     				idNewHotel++;
     				req.body["id_hotel"]=idNewHotel;
-
+    				req.body["capacite"]= parseInt(req.body["capacite"]);
     				db.collection('hotel').insertOne(req.body);
 					res.end(JSON.stringify("\nInsertion réussie\n"));
 		  
