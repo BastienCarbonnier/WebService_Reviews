@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var MongoClient = require("mongodb").MongoClient;
 var url = "mongodb://localhost:27017";
 var cors = require('cors');
-
+var onto = require('./ontologie_base.json');
 app.use(cors());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.json());
@@ -131,6 +131,8 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     				req.body["id_hotel"]=idNewHotel;
     				req.body["capacite"]= parseInt(req.body["capacite"]);
     				db.collection('hotel').insertOne(req.body);
+    				let obj = {"id_hotel":idNewHotel,"ontologie":onto};
+    				db.collection('ontologie').insertOne(obj);
 					res.end(JSON.stringify("\nInsertion réussie\n"));
 		  
 	    		});
