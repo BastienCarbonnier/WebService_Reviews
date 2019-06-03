@@ -4,14 +4,12 @@
 	"ontologie":
 	{
 		"name":"hôtel",
-		"polarite":{"neg":0.42,"neutre":0.23,"pos":0.71},
 		"children" : [
 		{
 			"name":"chambre",
 			"children":[
 			{
 				"name":"literie",
-				"polarite":{"neg":0.19,"neutre":0.9,"pos":0.68},
 				"children":[
 								{
 									"name":"matelas",
@@ -158,18 +156,15 @@
 								{
 									"name":"femme de ménage",
 									"children": [],
-									"synonymes":       ["femme de service"],
-									"polarite":{"neg":0.42,"neutre":0.23,"pos":0.51}
+									"synonymes":       ["femme de service"]
 								},
 								{
 									"name":"aspirateur",
 									"children": [],
-									"synonymes":  ["balai"],
-									"polarite":{"neg":0.60,"neutre":0.10,"pos":0.20}
+									"synonymes":  ["balai"]
 								}
 							],
-				"synonymes":       ["propreté", "poussières"],
-				"polarite":{"neg":0.63,"neutre":0.11,"pos":0.34}
+				"synonymes":       ["propreté", "poussières"]
 			}
 					  ],
 			"synonymes": ["chambrée", "suite"] 
@@ -411,7 +406,6 @@
 	},
 	{
 		"name":"bruit",
-		"polarite":{"neg":0.87,"neutre":0.31,"pos":0.12},
 		"children"    : [],
 		"synonymes": ["insonorisation","calme", "tranquillité"] 
 	}],
@@ -423,14 +417,12 @@
 	"ontologie":
 	{
 		"name":"hôtel",
-		"polarite":{"neg":0.42,"neutre":0.23,"pos":0.71},
 		"children" : [
 		{
 			"name":"chambre",
 			"children":[
 			{
 				"name":"literie",
-				"polarite":{"neg":0.19,"neutre":0.9,"pos":0.68},
 				"children":[
 								{
 									"name":"matelas",
@@ -577,18 +569,15 @@
 								{
 									"name":"femme de ménage",
 									"children": [],
-									"synonymes":       ["femme de service"],
-									"polarite":{"neg":0.42,"neutre":0.23,"pos":0.51}
+									"synonymes":       ["femme de service"]
 								},
 								{
 									"name":"aspirateur",
 									"children": [],
-									"synonymes":  ["balai"],
-									"polarite":{"neg":0.60,"neutre":0.10,"pos":0.20}
+									"synonymes":  ["balai"]
 								}
 							],
-				"synonymes":       ["propreté", "poussières"],
-				"polarite":{"neg":0.63,"neutre":0.11,"pos":0.34}
+				"synonymes":       ["propreté", "poussières"]
 			}
 					  ],
 			"synonymes": ["chambrée", "suite"] 
@@ -830,7 +819,6 @@
 	},
 	{
 		"name":"bruit",
-		"polarite":{"neg":0.87,"neutre":0.31,"pos":0.12},
 		"children"    : [],
 		"synonymes": ["insonorisation","calme", "tranquillité"] 
 	}],
